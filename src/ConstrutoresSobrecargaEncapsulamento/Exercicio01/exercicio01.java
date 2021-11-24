@@ -1,4 +1,6 @@
-package ConstrutoresSobrecargaEncapsulamento;
+package ConstrutoresSobrecargaEncapsulamento.Exercicio01;
+
+import ConstrutoresSobrecargaEncapsulamento.Exercicio01.Entidades.Conta;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -38,61 +40,48 @@ Account 8532, Holder: Alex Green, Balance: $ 395.00
 
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
+        Conta conta = new Conta();
 
-        String nome;
-        int numeroDaConta;
-        double valorDepositoInicial;
-        char depositoInicial;
-        double novoDeposito;
-        char resposta;
-        double saque;
-        double taxa;
 
         System.out.println("Enter account number: ");
-        numeroDaConta = sc.nextInt();
+        conta.setNumeroDaConta(sc.nextInt());
         System.out.println("Enter account holder: ");
-        nome = sc.next();
+        conta.setNome(sc.next());
         System.out.println("Is there na initial deposit (y/n)? ");
-        depositoInicial = sc.next().charAt(0);
-        System.out.println("Enter initial deposit value: ");
-        valorDepositoInicial = sc.nextDouble();
 
+        if (sc.next().charAt(0) == 'y') {
+            System.out.println("Enter initial deposit value: ");
+            conta.addValor(sc.nextDouble());
+        }
+        System.out.println("Account data: ");
+        System.out.println("Account " + conta.getNumeroDaConta() + " Holder: " + conta.getNome() + " balance: $" + conta.getValor());
 
-        if (depositoInicial == 'y') {
-            System.out.println("Account data: ");
-            System.out.println("Account " + numeroDaConta + " Holder: " + nome + " balance: $" + valorDepositoInicial);
-        }
-        else {
-            System.out.println("Thanks for preference");
-        }
 
         System.out.println("Will make a deposit? ");
-        resposta = sc.next().charAt(0);
 
-        if (resposta == 'y') {
+        if (sc.next().charAt(0) == 'y') {
             System.out.println("Enter a deposit value: ");
-            novoDeposito = sc.nextDouble();
+            conta.addValor(sc.nextDouble());
 
             System.out.println("Account data: ");
-            System.out.println("Account " + numeroDaConta + " Holder: " + nome + " balance: $" + (valorDepositoInicial + novoDeposito));
-
+            System.out.println("Account " + conta.getNumeroDaConta() + " Holder: " + conta.getNome() + " balance: $" + conta.getValor());
         }
         else {
             System.out.println("Thanks for preference");
         }
 
         System.out.println("Will make a withdraw? ");
-        resposta = sc.next().charAt(0);
 
-        if (resposta == 'y') {
+        if (sc.next().charAt(0) == 'y') {
             System.out.println("Enter a withdraw value: ");
-            saque = sc.nextDouble();
+            conta.removeValor(sc.nextDouble() + 5.00);
 
             System.out.println("Account data: ");
-            System.out.println("Account " + numeroDaConta + " Holder: " + nome + " balance: $" + (valorDepositoInicial + novoDeposito));
+            System.out.println("Account " + conta.getNumeroDaConta() + " Holder: " + conta.getNome() + " balance: $" + conta.getValor());
 
         }
 
+        sc.close();
 
     }
 }
