@@ -35,7 +35,6 @@ public class Conta {
     public double getValor(){
         return this.valor;
     }
-
     public void setValor(double valor){
          this.valor = valor;
     }
